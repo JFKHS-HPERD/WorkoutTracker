@@ -103,8 +103,8 @@
             <input type="text" id="name" required>
             
             <label for="email">Your GDOE Email:</label>
-            <input type="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@students\.gdoe\.net" title="Please enter a valid GDOE email address (e.g., name@students.gdoe.net)">
-
+            <input type="email" id="email" required>
+            
             <label for="classPeriod">Class Period:</label>
             <select id="classPeriod" required>
                 <option value="">Select class period</option>
@@ -153,6 +153,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
+        document.getElementById('workoutForm').addEventListener('submit', function(e) {
+        const emailInput = document.getElementById('email').value;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@students\.gdoe\.net$/;
+
+        if (!emailPattern.test(emailInput)) {
+            e.preventDefault();
+            alert('Please enter a valid GDOE email address (e.g., name@students.gdoe.net)');
+        }
+    });
+        
         const workoutForm = document.getElementById('workoutForm');
         const workoutList = document.getElementById('workoutList');
         const submitButton = document.getElementById('submitButton');
