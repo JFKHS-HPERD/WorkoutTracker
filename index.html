@@ -175,6 +175,7 @@
             
             const workout = {
                 name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
                 classPeriod: document.getElementById('classPeriod').value,
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
@@ -208,6 +209,7 @@
                 workoutItem.classList.add('workout-item');
                 workoutItem.innerHTML = `
                     <h3>${workout.name}'s ${workout.exerciseType} Workout</h3>
+                    <p><strong>Email:</strong> ${workout.email}</p>
                     <p><strong>Class Period:</strong> ${workout.classPeriod}</p>
                     <p><strong>Date:</strong> ${moment(workout.date).format('MMMM D, YYYY')}</p>
                     <p><strong>Time:</strong> ${moment(workout.time, 'HH:mm').format('h:mm A')}</p>
@@ -232,6 +234,7 @@
         function editWorkout(index) {
             const workout = workouts[index];
             document.getElementById('name').value = workout.name;
+            document.getElementById('email').value = workout.email;
             document.getElementById('classPeriod').value = workout.classPeriod;
             document.getElementById('date').value = workout.date;
             document.getElementById('time').value = workout.time;
@@ -249,6 +252,7 @@
                 ["Name", "Class Period", "Date", "Time", "Exercise Type", "Duration", "Workout Description", "Reflection"],
                 ...workouts.map(workout => [
                     workout.name,
+                    workout.email,
                     workout.classPeriod,
                     workout.date,
                     workout.time,
