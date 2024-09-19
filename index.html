@@ -153,16 +153,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
-        document.getElementById('workoutForm').addEventListener('submit', function(e) {
-        const emailInput = document.getElementById('email').value;
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@students\.gdoe\.net$/;
-
-        if (!emailPattern.test(emailInput)) {
-            e.preventDefault();
-            alert('Please enter a valid GDOE email address (e.g., name@students.gdoe.net)');
-        }
-    });
-        
+                
         const workoutForm = document.getElementById('workoutForm');
         const workoutList = document.getElementById('workoutList');
         const submitButton = document.getElementById('submitButton');
@@ -173,33 +164,46 @@
         workoutForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const workout = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                classPeriod: document.getElementById('classPeriod').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                exerciseType: document.getElementById('exerciseType').value,
-                duration: document.getElementById('duration').value,
-                workoutDescription: document.getElementById('workoutDescription').value,
-                reflection: document.getElementById('reflection').value
-            };
-            
-            const editIndex = document.getElementById('editIndex').value;
-            
-            if (editIndex !== '') {
-                workouts[editIndex] = workout;
-                document.getElementById('editIndex').value = '';
-                submitButton.textContent = 'Log Workout';
-            } else {
-                workouts.push(workout);
-            }
-            
-            localStorage.setItem('workouts', JSON.stringify(workouts));
-            displayWorkouts();
-            workoutForm.reset();
-        });
+            document.getElementById('workoutForm').addEventListener('submit', function(e) {
+        const emailInput = document.getElementById('email').value;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@students\.gdoe\.net$/;
 
+        // Check if the email matches the pattern
+        if (!emailPattern.test(emailInput)) {
+            e.preventDefault(); // Prevent form submission
+            alert('Please enter a valid GDOE email address (e.g., name@students.gdoe.net)');
+            return; // Stop further execution if email is invalid
+        }
+
+        // If the email is valid, proceed with logging the workout
+        // (this part of the code will only run if the email validation passes)
+        const workout = {
+            name: document.getElementById('name').value,
+            email: emailInput,  // Added email field to workout data
+            classPeriod: document.getElementById('classPeriod').value,
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            exerciseType: document.getElementById('exerciseType').value,
+            duration: document.getElementById('duration').value,
+            workoutDescription: document.getElementById('workoutDescription').value,
+            reflection: document.getElementById('reflection').value
+        };
+
+        const editIndex = document.getElementById('editIndex').value;
+        let workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+
+        if (editIndex !== '') {
+            workouts[editIndex] = workout;
+            document.getElementById('editIndex').value = '';
+            submitButton.textContent = 'Log Workout';
+        } else {
+            workouts.push(workout);
+        }
+
+        localStorage.setItem('workouts', JSON.stringify(workouts));
+        displayWorkouts();
+        workoutForm.reset();
+    });
         function displayWorkouts() {
             workoutList.innerHTML = '';
             workouts.sort((a, b) => moment(b.date + ' ' + b.time).diff(moment(a.date + ' ' + a.time)));
