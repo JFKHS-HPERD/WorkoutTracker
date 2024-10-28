@@ -164,7 +164,7 @@
 
         <div id="workoutList"></div>
 
-        <button id="exportButton">Export to CSV</button>
+        <button id="exportTextButton">Export to Text File</button>
         <button id="emailButton">Email Workout Log</button>
     </div>
     
@@ -173,7 +173,7 @@
         const workoutForm = document.getElementById('workoutForm');
         const workoutList = document.getElementById('workoutList');
         const submitButton = document.getElementById('submitButton');
-        const exportButton = document.getElementById('exportButton');
+        const exportButton = document.getElementById('exportTextButton');
         const emailButton = document.getElementById('emailButton');
         let workouts = JSON.parse(localStorage.getItem('workouts')) || [];
 
@@ -239,6 +239,39 @@
                 workoutList.appendChild(workoutItem);
             });
         }
+        function exportToTextFile() {
+    // Generate text content
+    let textContent = "Workout Log\n\n";
+    workouts.forEach(workout => {
+        textContent += `Name: ${workout.name}\n`;
+        textContent += `Email: ${workout.email}\n`;
+        textContent += `Class Period: ${workout.classPeriod}\n`;
+        textContent += `Type of Session: ${workout.sessionType}\n`;
+        textContent += `Intensity Level: ${workout.intensity}\n`;
+        textContent += `Date: ${workout.date}\n`;
+        textContent += `Time: ${workout.time}\n`;
+        textContent += `Exercise Type: ${workout.exerciseType}\n`;
+        textContent += `Duration: ${workout.duration} minutes\n`;
+        textContent += `Workout Description: ${workout.workoutDescription}\n`;
+        textContent += `Reflection - What went well: ${workout.reflection1}\n`;
+        textContent += `Reflection - Challenges: ${workout.reflection2}\n`;
+        textContent += `Reflection - Adjustments for next time: ${workout.reflection3}\n`;
+        textContent += "\n----------------------------------------\n\n";
+    });
+
+    // Create a Blob from the text
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "workout_log.txt";
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Attach the event listener to the new button
+document.getElementById('exportTextButton').addEventListener('click', exportToTextFile);
 
         displayWorkouts();
     </script>
