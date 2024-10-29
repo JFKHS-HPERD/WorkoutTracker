@@ -134,7 +134,7 @@
                 <option value="Outside-of-School">Outside-of-School</option>
             </select>
             
-            <label for="componentType">Fitness Component(s) Focused:</label>
+            <label for="componentType">Which fitness component(s) did you focus on this session?</label>
             <input type="text" id="componentType" placeholder="Enter fitness component(s)" required>
             
             <label for="intensity">Intensity Level:</label>
@@ -149,6 +149,7 @@
 
             <label for="duration">Duration (minutes):</label>
             <input type="number" id="duration" min="1" required>
+            <p><i>Must be at least 20 minutes per session</i></p>
 
             <label for="workoutDescription">Workout Description:</label>
             <textarea id="workoutDescription" rows="4" placeholder="Describe your workout in detail"></textarea>
@@ -157,10 +158,10 @@
             <label for="reflection1">What went well in today’s session?</label>
             <textarea id="reflection1" rows="3"></textarea>
             
-            <label for="reflection2">What challenges did you face?</label>
+            <label for="reflection2">What did you find challenging in this session?</label>
             <textarea id="reflection2" rows="3"></textarea>
             
-            <label for="reflection3">Any adjustments needed for next time?</label>
+            <label for="reflection3">What are you looking forward to trying or improving in your next session?</label>
             <textarea id="reflection3" rows="3"></textarea>
 
             <button type="submit" id="submitButton">Log Workout</button>
@@ -189,8 +190,8 @@
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
                 sessionType: document.getElementById('sessionType').value,
-                intensity: document.getElementById('intensity').value,
                 componentType: document.getElementById('componentType').value,
+                intensity: document.getElementById('intensity').value,
                 duration: document.getElementById('duration').value,
                 workoutDescription: document.getElementById('workoutDescription').value,
                 reflection1: document.getElementById('reflection1').value,
@@ -232,7 +233,7 @@
                     <p><strong>Workout Description:</strong> ${workout.workoutDescription}</p>
                     <p><strong>Reflection - What went well:</strong> ${workout.reflection1}</p>
                     <p><strong>Reflection - Challenges:</strong> ${workout.reflection2}</p>
-                    <p><strong>Reflection - Adjustments for next time:</strong> ${workout.reflection3}</p>
+                    <p><strong>Reflection - Improvements for next time:</strong> ${workout.reflection3}</p>
                     <div class="button-group">
                         <button class="edit-button" onclick="editWorkout(${index})">Edit</button>
                         <button class="delete-button" onclick="deleteWorkout(${index})">Delete</button>
@@ -262,8 +263,8 @@
             document.getElementById('date').value = workout.date;
             document.getElementById('time').value = workout.time;
             document.getElementById('sessionType').value = workout.sessionType;
-            document.getElementById('intensity').value = workout.intensity;
             document.getElementById('componentType').value = workout.componentType;
+            document.getElementById('intensity').value = workout.intensity;
             document.getElementById('duration').value = workout.duration;
             document.getElementById('workoutDescription').value = workout.workoutDescription;
             document.getElementById('reflection1').value = workout.reflection1;
@@ -287,10 +288,10 @@
                 textContent += `Email: ${workout.email}\n`;
                 textContent += `Class Period: ${workout.classPeriod}\n`;
                 textContent += `Type of Session: ${workout.sessionType}\n`;
+                textContent += `Fitness Component(s) Focused: ${workout.componentType}\n`;
                 textContent += `Intensity Level: ${workout.intensity}\n`;
                 textContent += `Date: ${workout.date}\n`;
                 textContent += `Time: ${workout.time}\n`;
-                textContent += `Exercise Type: ${workout.componentType}\n`;
                 textContent += `Duration: ${workout.duration} minutes\n`;
                 textContent += `Workout Description: ${workout.workoutDescription}\n`;
                 textContent += `Reflection - What went well: ${workout.reflection1}\n`;
