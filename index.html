@@ -140,7 +140,7 @@
                 <option value="Cardio-Endurance">Cardriovascular Endurance</option>
                 <option value="Muscular-Strength">Muscular Strength</option>
                 <option value="Muscular-Endurance">Muscular Endurance</option>
-                <option value="Flexibility">Flexiblity</option>
+                <option value="Flexibility">Flexibility</option>
             </select>
             
             <label for="intensity">Intensity Level:</label>
@@ -153,9 +153,11 @@
                 <option value="Zone-5">Zone 5: 90%-100% of HRmax</option>
             </select>
 
-            <label for="duration">Duration (minutes):</label>
+            <label for="duration">Duration (minutes):
+            <br>
+            <i>(Must be at least 20 minutes per session)</i>
+            </label>
             <input type="number" id="duration" min="1" required>
-            <p><i>Must be at least 20 minutes per session</i></p>
 
             <label for="workoutDescription">Workout Description:</label>
             <textarea id="workoutDescription" rows="4" placeholder="Describe your workout in detail"></textarea>
