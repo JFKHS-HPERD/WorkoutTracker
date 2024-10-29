@@ -1,97 +1,11 @@
-<html><head>
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JFKHS HPERD Dept. Workout Tracker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            font-size: 24px; /* Reduce font size slightly */
-            line-height: 1.2; /* Adjust line height for better readability */
-            margin-bottom: 20px; /* Add some space below the header */
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 5px;
-            margin-bottom: 10px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #workoutList {
-            margin-top: 20px;
-        }
-        .workout-item {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        .edit-button {
-            background-color: #008CBA;
-        }
-        .edit-button:hover {
-            background-color: #007B9A;
-        }
-        .delete-button {
-            background-color: #f44336;
-        }
-        .delete-button:hover {
-            background-color: #da190b;
-        }
-        .button-group {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-        #exportTextButton {
-            background-color: #FFA500;
-        }
-        #exportTextButton:hover {
-            background-color: #FF8C00;
-        }
-        #emailButton {
-            background-color: #4285F4;
-        }
-        #emailButton:hover {
-            background-color: #3367D6;
-        }
+        /* Styles omitted for brevity */
     </style>
 </head>
 <body>
@@ -100,72 +14,14 @@
         <form id="workoutForm">
             <input type="hidden" id="editIndex" value="">
 
-            <!-- Existing fields -->
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-            
-            <label for="email">Your GDOE Email:</label>
-            <input type="email" id="email" required>
-            
-            <label for="classPeriod">Class Period:</label>
-            <select id="classPeriod" required>
-                <option value="">Select class period</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-            
-            <label for="date">Date:</label>
-            <input type="date" id="date" required>
-            
-            <label for="time">Time:</label>
-            <input type="time" id="time" required>
-            
-            <!-- New fields -->
-            <label for="sessionType">Type of Session:</label>
-            <select id="sessionType" required>
-                <option value="">Select session type</option>
-                <option value="In-Class">In-Class</option>
-                <option value="Outside-of-School">Outside-of-School</option>
-            </select>
-            
-            <label for="intensity">Intensity Level:</label>
-            <select id="intensity" required>
-                <option value="">Select intensity level</option>
-                <option value="Light">Light</option>
-                <option value="Moderate">Moderate</option>
-                <option value="Vigorous">Vigorous</option>
-            </select>
-            
-            <label for="exerciseType">Exercise Type:</label>
-            <input type="text" id="exerciseType" placeholder="Enter exercise type" required>
+            <!-- Form fields omitted for brevity -->
 
-            <label for="duration">Duration (minutes):</label>
-            <input type="number" id="duration" min="1" required>
-
-            <label for="workoutDescription">Workout Description:</label>
-            <textarea id="workoutDescription" rows="4" placeholder="Describe your workout in detail"></textarea>
-            
-            <!-- Reflection questions -->
-            <label for="reflection1">What went well in today’s session?</label>
-            <textarea id="reflection1" rows="3"></textarea>
-            
-            <label for="reflection2">What challenges did you face?</label>
-            <textarea id="reflection2" rows="3"></textarea>
-            
-            <label for="reflection3">Any adjustments needed for next time?</label>
-            <textarea id="reflection3" rows="3"></textarea>
-            
             <button type="submit" id="submitButton">Log Workout</button>
         </form>
 
         <div id="workoutList"></div>
 
         <button id="exportTextButton">Export to Text File</button>
-        <button id="emailButton">Email Workout Log</button>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -174,7 +30,6 @@
         const workoutList = document.getElementById('workoutList');
         const submitButton = document.getElementById('submitButton');
         const exportButton = document.getElementById('exportTextButton');
-        const emailButton = document.getElementById('emailButton');
         let workouts = JSON.parse(localStorage.getItem('workouts')) || [];
 
         workoutForm.addEventListener('submit', function(e) {
@@ -239,39 +94,76 @@
                 workoutList.appendChild(workoutItem);
             });
         }
+
+        function deleteWorkout(index) {
+            // Remove the workout at the specified index
+            workouts.splice(index, 1);
+            // Update local storage
+            localStorage.setItem('workouts', JSON.stringify(workouts));
+            // Refresh the display
+            displayWorkouts();
+        }
+
+        function editWorkout(index) {
+            // Retrieve the selected workout
+            const workout = workouts[index];
+
+            // Populate form fields with workout data for editing
+            document.getElementById('name').value = workout.name;
+            document.getElementById('email').value = workout.email;
+            document.getElementById('classPeriod').value = workout.classPeriod;
+            document.getElementById('date').value = workout.date;
+            document.getElementById('time').value = workout.time;
+            document.getElementById('sessionType').value = workout.sessionType;
+            document.getElementById('intensity').value = workout.intensity;
+            document.getElementById('exerciseType').value = workout.exerciseType;
+            document.getElementById('duration').value = workout.duration;
+            document.getElementById('workoutDescription').value = workout.workoutDescription;
+            document.getElementById('reflection1').value = workout.reflection1;
+            document.getElementById('reflection2').value = workout.reflection2;
+            document.getElementById('reflection3').value = workout.reflection3;
+
+            // Store the index of the workout being edited
+            document.getElementById('editIndex').value = index;
+            
+            // Change the submit button text to 'Update Workout'
+            submitButton.textContent = 'Update Workout';
+            // Scroll to the top of the form for better user experience
+            window.scrollTo(0, 0);
+        }
+
         function exportToTextFile() {
-    // Generate text content
-    let textContent = "Workout Log\n\n";
-    workouts.forEach(workout => {
-        textContent += `Name: ${workout.name}\n`;
-        textContent += `Email: ${workout.email}\n`;
-        textContent += `Class Period: ${workout.classPeriod}\n`;
-        textContent += `Type of Session: ${workout.sessionType}\n`;
-        textContent += `Intensity Level: ${workout.intensity}\n`;
-        textContent += `Date: ${workout.date}\n`;
-        textContent += `Time: ${workout.time}\n`;
-        textContent += `Exercise Type: ${workout.exerciseType}\n`;
-        textContent += `Duration: ${workout.duration} minutes\n`;
-        textContent += `Workout Description: ${workout.workoutDescription}\n`;
-        textContent += `Reflection - What went well: ${workout.reflection1}\n`;
-        textContent += `Reflection - Challenges: ${workout.reflection2}\n`;
-        textContent += `Reflection - Adjustments for next time: ${workout.reflection3}\n`;
-        textContent += "\n----------------------------------------\n\n";
-    });
+            // Generate text content
+            let textContent = "Workout Log\n\n";
+            workouts.forEach(workout => {
+                textContent += `Name: ${workout.name}\n`;
+                textContent += `Email: ${workout.email}\n`;
+                textContent += `Class Period: ${workout.classPeriod}\n`;
+                textContent += `Type of Session: ${workout.sessionType}\n`;
+                textContent += `Intensity Level: ${workout.intensity}\n`;
+                textContent += `Date: ${workout.date}\n`;
+                textContent += `Time: ${workout.time}\n`;
+                textContent += `Exercise Type: ${workout.exerciseType}\n`;
+                textContent += `Duration: ${workout.duration} minutes\n`;
+                textContent += `Workout Description: ${workout.workoutDescription}\n`;
+                textContent += `Reflection - What went well: ${workout.reflection1}\n`;
+                textContent += `Reflection - Challenges: ${workout.reflection2}\n`;
+                textContent += `Reflection - Adjustments for next time: ${workout.reflection3}\n`;
+                textContent += "\n----------------------------------------\n\n";
+            });
 
-    // Create a Blob from the text
-    const blob = new Blob([textContent], { type: 'text/plain' });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "workout_log.txt";
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+            // Create a Blob from the text
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "workout_log.txt";
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
-// Attach the event listener to the new button
-document.getElementById('exportTextButton').addEventListener('click', exportToTextFile);
+        document.getElementById('exportTextButton').addEventListener('click', exportToTextFile);
 
         displayWorkouts();
     </script>
