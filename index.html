@@ -144,8 +144,14 @@
                 <option value="Zone-5">Zone 5: 90%-100% of HRmax</option>
             </select>
             
-            <label for="exerciseType">Exercise Type:</label>
-            <input type="text" id="exerciseType" placeholder="Enter exercise type" required>
+            <label for="exerciseType">Fitness Component(s) Focused:</label>
+            <select id="exerciseType" multiple required>
+                <option value="Cardio-Endurance">Cardiovascular Endurance</option>
+                <option value="Muscular-Strength">Muscular Strength</option>
+                <option value="Muscular-Endurance">Muscular Endurance</option>
+                <option value="Flexibility">Flexibility</option>
+            </select>
+
 
             <label for="duration">Duration (minutes):</label>
             <input type="number" id="duration" min="1" required>
@@ -190,7 +196,7 @@
                 time: document.getElementById('time').value,
                 sessionType: document.getElementById('sessionType').value,
                 intensity: document.getElementById('intensity').value,
-                exerciseType: document.getElementById('exerciseType').value,
+                exerciseType: Array.from(document.getElementById('exerciseType').selectedOptions).map(option => option.value),
                 duration: document.getElementById('duration').value,
                 workoutDescription: document.getElementById('workoutDescription').value,
                 reflection1: document.getElementById('reflection1').value,
