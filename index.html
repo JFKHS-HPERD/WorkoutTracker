@@ -102,7 +102,64 @@
         <form id="workoutForm">
             <input type="hidden" id="editIndex" value="">
 
-            <!-- Form fields omitted for brevity -->
+            <!-- Existing fields -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Your GDOE Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="classPeriod">Class Period:</label>
+            <select id="classPeriod" required>
+                <option value="">Select class period</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+            
+            <label for="time">Time:</label>
+            <input type="time" id="time" required>
+            
+            <!-- New fields -->
+            <label for="sessionType">Type of Session:</label>
+            <select id="sessionType" required>
+                <option value="">Select session type</option>
+                <option value="In-Class">In-Class</option>
+                <option value="Outside-of-School">Outside-of-School</option>
+            </select>
+            
+            <label for="intensity">Intensity Level:</label>
+            <select id="intensity" required>
+                <option value="">Select intensity level</option>
+                <option value="Light">Light</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Vigorous">Vigorous</option>
+            </select>
+            
+            <label for="exerciseType">Exercise Type:</label>
+            <input type="text" id="exerciseType" placeholder="Enter exercise type" required>
+
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" min="1" required>
+
+            <label for="workoutDescription">Workout Description:</label>
+            <textarea id="workoutDescription" rows="4" placeholder="Describe your workout in detail"></textarea>
+            
+            <!-- Reflection questions -->
+            <label for="reflection1">What went well in today’s session?</label>
+            <textarea id="reflection1" rows="3"></textarea>
+            
+            <label for="reflection2">What challenges did you face?</label>
+            <textarea id="reflection2" rows="3"></textarea>
+            
+            <label for="reflection3">Any adjustments needed for next time?</label>
+            <textarea id="reflection3" rows="3"></textarea>
 
             <button type="submit" id="submitButton">Log Workout</button>
         </form>
