@@ -5,7 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JFKHS HPERD Dept. Workout Tracker</title>
     <style>
-        /* Styles omitted for brevity */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px; /* Reduce font size slightly */
+            line-height: 1.2; /* Adjust line height for better readability */
+            margin-bottom: 20px; /* Add some space below the header */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #workoutList {
+            margin-top: 20px;
+        }
+        .workout-item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .edit-button {
+            background-color: #008CBA;
+        }
+        .edit-button:hover {
+            background-color: #007B9A;
+        }
+        .delete-button {
+            background-color: #f44336;
+        }
+        .delete-button:hover {
+            background-color: #da190b;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        #exportTextButton {
+            background-color: #FFA500;
+        }
+        #exportTextButton:hover {
+            background-color: #FF8C00;
+        }
+        #emailButton {
+            background-color: #4285F4;
+        }
+        #emailButton:hover {
+            background-color: #3367D6;
+        }
     </style>
 </head>
 <body>
