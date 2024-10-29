@@ -134,6 +134,9 @@
                 <option value="Outside-of-School">Outside-of-School</option>
             </select>
             
+            <label for="componentType">Fitness Component(s) Focused:</label>
+            <input type="text" id="componentType" placeholder="Enter fitness component(s)" required>
+            
             <label for="intensity">Intensity Level:</label>
             <select id="intensity" required>
                 <option value="">Select intensity level</option>
@@ -143,15 +146,6 @@
                 <option value="Zone-4">Zone 4: 80%-90% of HRmax</option>
                 <option value="Zone-5">Zone 5: 90%-100% of HRmax</option>
             </select>
-            
-            <label for="exerciseType">Fitness Component(s) Focused:</label>
-            <select id="exerciseType" multiple required>
-                <option value="Cardio-Endurance">Cardiovascular Endurance</option>
-                <option value="Muscular-Strength">Muscular Strength</option>
-                <option value="Muscular-Endurance">Muscular Endurance</option>
-                <option value="Flexibility">Flexibility</option>
-            </select>
-
 
             <label for="duration">Duration (minutes):</label>
             <input type="number" id="duration" min="1" required>
@@ -196,7 +190,7 @@
                 time: document.getElementById('time').value,
                 sessionType: document.getElementById('sessionType').value,
                 intensity: document.getElementById('intensity').value,
-                exerciseType: Array.from(document.getElementById('exerciseType').selectedOptions).map(option => option.value),
+                componentType: document.getElementById('componentType').value,
                 duration: document.getElementById('duration').value,
                 workoutDescription: document.getElementById('workoutDescription').value,
                 reflection1: document.getElementById('reflection1').value,
@@ -227,7 +221,7 @@
                 const workoutItem = document.createElement('div');
                 workoutItem.classList.add('workout-item');
                 workoutItem.innerHTML = `
-                    <h3>${workout.name}'s ${workout.exerciseType} Workout</h3>
+                    <h3>${workout.name}'s ${workout.componentType} Workout</h3>
                     <p><strong>Email:</strong> ${workout.email}</p>
                     <p><strong>Class Period:</strong> ${workout.classPeriod}</p>
                     <p><strong>Type of Session:</strong> ${workout.sessionType}</p>
@@ -269,7 +263,7 @@
             document.getElementById('time').value = workout.time;
             document.getElementById('sessionType').value = workout.sessionType;
             document.getElementById('intensity').value = workout.intensity;
-            document.getElementById('exerciseType').value = workout.exerciseType;
+            document.getElementById('componentType').value = workout.componentType;
             document.getElementById('duration').value = workout.duration;
             document.getElementById('workoutDescription').value = workout.workoutDescription;
             document.getElementById('reflection1').value = workout.reflection1;
@@ -296,7 +290,7 @@
                 textContent += `Intensity Level: ${workout.intensity}\n`;
                 textContent += `Date: ${workout.date}\n`;
                 textContent += `Time: ${workout.time}\n`;
-                textContent += `Exercise Type: ${workout.exerciseType}\n`;
+                textContent += `Exercise Type: ${workout.componentType}\n`;
                 textContent += `Duration: ${workout.duration} minutes\n`;
                 textContent += `Workout Description: ${workout.workoutDescription}\n`;
                 textContent += `Reflection - What went well: ${workout.reflection1}\n`;
