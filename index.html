@@ -159,6 +159,12 @@
             </label>
             <input type="number" id="duration" min="1" required>
 
+            <label for="preworkoutHR">Pre-Workout Heart Rate (bpm):</label>
+            <textarea id="preworkoutHR" placeholder="Log your heart rate before your workout"></textarea>
+
+            <label for="postworkoutHR">Post-Workout Heart Rate (bpm):</label>
+            <textarea id="postworkoutHR" placeholder="Log your heart rate immediately after your workout"></textarea>
+         
             <label for="workoutDescription">Workout Description:</label>
             <textarea id="workoutDescription" rows="4" placeholder="Describe your workout in detail"></textarea>
             
@@ -201,6 +207,8 @@
                 componentType: document.getElementById('componentType').value,
                 intensity: document.getElementById('intensity').value,
                 duration: document.getElementById('duration').value,
+                preworkoutHR: document.getElementById('preworkoutHR').value,
+                postworkoutHR: document.getElementById('postworkoutHR').value,
                 workoutDescription: document.getElementById('workoutDescription').value,
                 reflection1: document.getElementById('reflection1').value,
                 reflection2: document.getElementById('reflection2').value,
@@ -238,6 +246,8 @@
                     <p><strong>Date:</strong> ${moment(workout.date).format('MMMM D, YYYY')}</p>
                     <p><strong>Time:</strong> ${moment(workout.time, 'HH:mm').format('h:mm A')}</p>
                     <p><strong>Duration:</strong> ${workout.duration} minutes</p>
+                    <p><strong>Pre-Workout Heart Rate:</strong> ${workout.preworkoutHR}bpm</p>
+                    <p><strong>Post-Workout HR:</strong> ${workout.postworkoutHR}bpm</p>
                     <p><strong>Workout Description:</strong> ${workout.workoutDescription}</p>
                     <p><strong>Reflection - What went well:</strong> ${workout.reflection1}</p>
                     <p><strong>Reflection - Challenges:</strong> ${workout.reflection2}</p>
@@ -274,6 +284,8 @@
             document.getElementById('componentType').value = workout.componentType;
             document.getElementById('intensity').value = workout.intensity;
             document.getElementById('duration').value = workout.duration;
+            document.getElementById('preworkoutHR').value = workout.preworkoutHR;
+            document.getElementById('postworkoutHR').value = workout.postworkoutHR;
             document.getElementById('workoutDescription').value = workout.workoutDescription;
             document.getElementById('reflection1').value = workout.reflection1;
             document.getElementById('reflection2').value = workout.reflection2;
@@ -296,7 +308,7 @@
                 textContent += `Email: ${workout.email}\n`;
                 textContent += `Class Period: ${workout.classPeriod}\n`;
                 textContent += `Type of Session: ${workout.sessionType}\n`;
-                textContent += `Fitness Component(s) Focused: ${workout.componentType}\n`;
+                textContent += `Fitness Component Focus: ${workout.componentType}\n`;
                 textContent += `Intensity Level: ${workout.intensity}\n`;
                 textContent += `Date: ${workout.date}\n`;
                 textContent += `Time: ${workout.time}\n`;
