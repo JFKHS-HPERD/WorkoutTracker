@@ -212,6 +212,11 @@
                 reflection2: document.getElementById('reflection2').value,
                 reflection3: document.getElementById('reflection3').value,
             };
+                const emailInput = document.getElementById('email').value;
+                if (!/^[a-zA-Z0-9._%+-]+@students\.gdoe\.net$/.test(emailInput)) {
+                alert('Please enter a valid GDOE email ending with @students.gdoe.net');
+                return; // Stops the form from proceeding
+            }
 
             const editIndex = document.getElementById('editIndex').value;
 
@@ -244,8 +249,8 @@
                     <p><strong>Date:</strong> ${moment(workout.date).format('MMMM D, YYYY')}</p>
                     <p><strong>Time:</strong> ${moment(workout.time, 'HH:mm').format('h:mm A')}</p>
                     <p><strong>Duration:</strong> ${workout.duration} minutes</p>
-                    <p><strong>Pre-Workout Heart Rate:</strong> ${workout.preworkoutHR}bpm</p>
-                    <p><strong>Post-Workout HR:</strong> ${workout.postworkoutHR}bpm</p>
+                    <p><strong>Pre-Workout Heart Rate:</strong> ${workout.preworkoutHR} bpm</p>
+                    <p><strong>Post-Workout HR:</strong> ${workout.postworkoutHR} bpm</p>
                     <p><strong>Workout Description:</strong> ${workout.workoutDescription}</p>
                     <p><strong>Reflection - What went well:</strong> ${workout.reflection1}</p>
                     <p><strong>Reflection - Challenges:</strong> ${workout.reflection2}</p>
